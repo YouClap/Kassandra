@@ -1,23 +1,18 @@
 # 🚧 This project is being updated to Swift 5 and new versions of Cassandra
 
+We are working on a new version of this driver using SwiftNIO.
+
 # Kassandra
 
 A pure Swift client library for [Apache Cassandra (3.4+)](http://cassandra.apache.org/) and [ScyllaDB](http://www.scylladb.com/) using Cassandra's binary protocol, CQL 3.2.
 
-[![Build Status](https://travis-ci.org/IBM-Swift/Kassandra.svg?branch=master)](https://travis-ci.org/IBM-Swift/Kassandra)
-![](https://img.shields.io/badge/Swift-3.0.2%20RELEASE-orange.svg?style=flat)
+![](https://img.shields.io/badge/Swift-5.0%20Release-orange.svg?style=flat)
 ![](https://img.shields.io/badge/platform-Linux,%20macOS-blue.svg?style=flat)
 
 ## Installation
 
 ```swift
-import PackageDescription
-
-let package = Package(
-    	dependencies: [
-		.Package(url: "https://github.com/IBM-Swift/Kassandra.git", majorVersion: 1)
-    	]
-    )
+.package(url: "https://github.com/youclap/Kassandra.git", from: "1.0.1")
 ```
 
 ## Basic usage

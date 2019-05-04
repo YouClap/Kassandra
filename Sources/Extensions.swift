@@ -65,7 +65,7 @@ extension Int: Convertible {
 extension UInt8: Convertible {
 
     var data: Data {
-        return Data(bytes: [self])
+        return Data([self])
     }
     
     var bool: Bool {
@@ -124,8 +124,8 @@ extension Date {
 extension Data {
 
     mutating func subdata(with length: Int) -> Data {
-        let blob = self.subdata(in: Range(0..<length))
-        self = self.subdata(in: Range(length..<self.count))
+        let blob = self.subdata(in: 0..<length)
+        self = self.subdata(in: length..<self.count)
         return blob
     }
 
@@ -150,7 +150,7 @@ extension Data {
     var decodeUInt8: UInt8 {
         mutating get {
             let uint = UInt8(self[0])
-            self = self.subdata(in: Range(1..<count))
+            self = self.subdata(in: 1..<count)
             return uint
         }
     }
@@ -158,7 +158,7 @@ extension Data {
     var decodeUInt16: UInt16 {
         mutating get {
             let uint = UInt16(msb: self[0], lsb: self[1])
-            self = self.subdata(in: Range(2..<self.count))
+            self = self.subdata(in: 2..<self.count)
             return uint
         }
     }
@@ -461,7 +461,7 @@ public struct AnyKey: Hashable {
     public let hashValueFunc: () -> Int
     public let equalityFunc: (Any) -> Bool
     
-    init<T: Hashable>(_ key: T) {
+    public init<T: Hashable>(_ key: T) {
         underlying = key
         
         hashValueFunc = { key.hashValue }

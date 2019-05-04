@@ -65,15 +65,18 @@ public enum Kind {
 }
 
 
-public struct Header: Hashable {
+public struct Header: Hashable, Equatable {
     let field: String
     let type: DataType?
 
-    public var hashValue: Int {
-        return field.hashValue * Int(type?.opcode ?? 1)
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(field)
+        hasher.combine(type?.opcode ?? 1)
+    }
+
+    public static func ==(lhs: Header, rhs: Header) -> Bool {
+        return lhs.hashValue == rhs.hashValue
     }
 }
-public func ==(lhs: Header, rhs: Header) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-}
+
 

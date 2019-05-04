@@ -35,9 +35,7 @@ public protocol Table {
 }
 
 public extension Table {
-
-
-    public typealias Document = [Field: Any]
+    typealias Document = [Field: Any]
 
 
     /**
@@ -49,7 +47,7 @@ public extension Table {
         Returns the Select Query
      
      */
-    public static func count(_ fields: Field...) -> Select {
+    static func count(_ fields: Field...) -> Select {
         
         let fields = fields.map{ String(describing: $0) }
 
@@ -70,7 +68,7 @@ public extension Table {
         Returns the Select Query
      
      */
-    public static func select(_ fields: Field ...) -> Select {
+    static func select(_ fields: Field ...) -> Select {
         return Select(fields.map{ String(describing: $0) }, from: Self.tableName)
     }
  
@@ -84,7 +82,7 @@ public extension Table {
          Returns the Insert Query
      
      */
-    public static func insert(_ values: Document) -> Insert {
+    static func insert(_ values: Document) -> Insert {
         return Insert(changeDictType(dict: values), into: Self.tableName)
     }
   
@@ -99,7 +97,7 @@ public extension Table {
          Returns the Update Query
      
      */
-    public static func update(_ values: Document, conditions: Predicate) -> Update {
+    static func update(_ values: Document, conditions: Predicate) -> Update {
         
         let vals = changeDictType(dict: values)
         
@@ -115,7 +113,7 @@ public extension Table {
          Returns the Delete Query
      
      */
-    public static func delete(where conditions: Predicate) -> Delete {
+    static func delete(where conditions: Predicate) -> Delete {
         
         return Delete(from: tableName, where: conditions)
     }
@@ -126,7 +124,7 @@ public extension Table {
          Returns the Raw Query
      
      */
-    public static func truncate() -> Raw {
+    static func truncate() -> Raw {
         return Raw(query: "TRUNCATE TABLE \(Self.tableName)")
     }
 
@@ -137,7 +135,7 @@ public extension Table {
          Returns the Raw Query
      
      */
-    public static func drop() -> Raw {
+    static func drop() -> Raw {
         return Raw(query: "DROP TABLE \(Self.tableName)")
     }
 }

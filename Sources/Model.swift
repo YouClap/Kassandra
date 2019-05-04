@@ -29,7 +29,6 @@ public typealias Row = [String: Any]
  
  */
 public protocol Model: Table {
-    associatedtype Field: Hashable
     
     static var tableName: String { get }
     static var primaryKey: Field { get }
@@ -53,7 +52,7 @@ public extension Model {
         Returns the Insert Query
      
      */
-    public func save(onCompletion: @escaping ((Result))->Void) {
+    func save(onCompletion: @escaping ((Result))->Void) {
         let values: [String: Any] =  Mirror(reflecting: self).children.reduce([:]) { acc, child in
             var ret = acc
             ret[child.label!] = child.value
@@ -73,7 +72,7 @@ public extension Model {
         Returns the Delete Query
      
      */
-    public func delete(onCompletion: @escaping ((Result))->Void) {
+    func delete(onCompletion: @escaping ((Result))->Void) {
         if let k = key {
             Delete(from: Self.tableName, where: "id" == k).execute(oncompletion: onCompletion)
         } else {
@@ -92,7 +91,7 @@ public extension Model {
         Returns the result of the query through the given callback
      
      */
-    public static func create(ifNotExists: Bool = false, onCompletion: @escaping ((Result)->Void)) {
+    static func create(ifNotExists: Bool = false, onCompletion: @escaping ((Result)->Void)) {
 
         let vals = packColumnData(key: String(describing: Self.primaryKey), columns: changeDictType2(dict: Self.fieldTypes))
 
@@ -111,7 +110,7 @@ public extension Model {
          
          Returns the result as an optional array of the model and optional error through the given callback
      */
-    public static func fetch(_ fields: [Field] = [], predicate: Predicate? = nil, limit: Int? = nil, onCompletion: @escaping (([Self]?, Error?)->Void)) {
+    static func fetch(_ fields: [Field] = [], predicate: Predicate? = nil, limit: Int? = nil, onCompletion: @escaping (([Self]?, Error?)->Void)) {
         
         Select(fields.map{ String(describing: $0) }, from: tableName)
             .filter(by: predicate)
