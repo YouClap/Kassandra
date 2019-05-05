@@ -13,5 +13,6 @@ let package = Package(
     targets: [
         .target(name: "Kassandra", dependencies: ["SSLService"], path: "Sources", exclude: ["Kassandra.xcodeproj", "README.md"]),
         .testTarget(name: "KassandraTests", dependencies: ["Kassandra"]),
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )

@@ -12,7 +12,7 @@ A pure Swift client library for [Apache Cassandra (3.4+)](http://cassandra.apach
 ## Installation
 
 ```swift
-.package(url: "https://github.com/youclap/Kassandra.git", from: "1.0.1")
+.package(url: "https://github.com/youclap/Kassandra.git", from: "1.1.0")
 ```
 
 ## Basic usage
