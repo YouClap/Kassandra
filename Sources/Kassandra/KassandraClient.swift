@@ -19,7 +19,7 @@
  import SSLService
  import Dispatch
 
- public class Kassandra {
+ public class KassandraClient {
 
      public var delegate: KassandraDelegate? = nil
 
@@ -234,7 +234,7 @@
      }
  }
 
- extension Kassandra {
+ extension KassandraClient {
 
      /**
           Initialize a configuration using a `CA Certificate` directory.
@@ -300,7 +300,7 @@
      }
  }
 
- extension Kassandra {
+ extension KassandraClient {
 
      internal func read() {
 
@@ -377,7 +377,7 @@
  }
 
  // Custom operators for database
- extension Kassandra {
+ extension KassandraClient {
      subscript(_ database: String) -> Bool {
          do {
              let request = Raw(query: "USE \(database);")

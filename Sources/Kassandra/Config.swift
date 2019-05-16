@@ -28,7 +28,7 @@ public final class Config {
 
     let _version: Byte = 0x03
 
-    var connection: Kassandra? = nil
+    var connection: KassandraClient? = nil
 
     var SSLConfig: SSLService.Configuration? = nil
 
