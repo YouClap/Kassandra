@@ -11,7 +11,7 @@ let package = Package(
         .package(url: "https://github.com/IBM-Swift/BlueSSLService.git", from: "1.0.46")
     ],
     targets: [
-        .target(name: "Kassandra", dependencies: ["SSLService"], path: "Sources", exclude: ["Kassandra.xcodeproj", "README.md"]),
+        .target(name: "Kassandra", dependencies: ["SSLService"], exclude: ["Kassandra.xcodeproj", "README.md"]),
         .testTarget(name: "KassandraTests", dependencies: ["Kassandra"]),
     ],
     swiftLanguageVersions: [.v5]
